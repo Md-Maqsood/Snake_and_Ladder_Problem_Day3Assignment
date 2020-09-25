@@ -16,7 +16,8 @@ public class SnakeAndLadder{
 		System.out.println("Player's number on die after die roll: "+player_numberOnDie);
 		switch(player_option){
 			case LADDER:
-				player_position+=player_numberOnDie;
+				if ((player_position+player_numberOnDie)<=FINAL_POSITION)
+					player_position+=player_numberOnDie;
 				break;
 			case NO_PLAY:
 				player_position+=0;
@@ -34,7 +35,7 @@ public class SnakeAndLadder{
 		int player_position=START_POSITION;
 		while (player_position<FINAL_POSITION){
 			player_position=SnakeAndLadder.move(player_position);
-			System.out.println("Player's position after die roll: "+player_position);
+			System.out.println("Player's position after move: "+player_position);
 		} 
 		System.out.println("Player won. Final player position is "+player_position);
 	}
