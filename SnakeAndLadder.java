@@ -10,12 +10,10 @@ public class SnakeAndLadder{
 		return number_on_die;
 	}
 
-	public static void main(String[] args){
-		int player_position=START_POSITION;
+	public static int move(int player_position){
 		int player_numberOnDie=SnakeAndLadder.dieRoll();
 		int player_option=(int)(Math.floor(Math.random()*10)%3);
 		System.out.println("Player's number on die after die roll: "+player_numberOnDie);
-		System.out.println("Player's position before die roll: "+player_position);
 		switch(player_option){
 			case LADDER:
 				player_position+=player_numberOnDie;
@@ -27,7 +25,17 @@ public class SnakeAndLadder{
 				player_position-=player_numberOnDie;
 				break;
 		}
-		System.out.println("Player's option (1:LADDER,0:NO_PLAY,2:SNAKE): "+player_option);
-		System.out.println("Player's position after die roll: "+player_position); 
+		System.out.println("Player's option (1:LADDER, 0:NO_PLAY, 2:SNAKE): "+player_option);
+		if(player_position<START_POSITION) player_position=START_POSITION;
+		return player_position; 
+	}
+
+	public static void main(String[] args){
+		int player_position=START_POSITION;
+		while (player_position<FINAL_POSITION){
+			player_position=SnakeAndLadder.move(player_position);
+			System.out.println("Player's position after die roll: "+player_position);
+		} 
+		System.out.println("Player won. Final player position is "+player_position);
 	}
 }
